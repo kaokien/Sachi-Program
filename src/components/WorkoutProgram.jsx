@@ -6,21 +6,21 @@ const WorkoutProgram = () => {
   const [selectedPhase, setSelectedPhase] = useState(programData.phases[0]);
   const [selectedDay, setSelectedDay] = useState(programData.phases[0].days[0]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [completedSets, setCompletedSets] = useState({});
+  const [setData, setSetData] = useState({});
   const dropdownRef = useRef(null);
 
-  // Load completed sets
+  // Load completed sets and weights
   useEffect(() => {
-    const saved = localStorage.getItem('sachi_booty_builder_progress');
+    const saved = localStorage.getItem('sachi_booty_builder_progress_v2');
     if (saved) {
-      setCompletedSets(JSON.parse(saved));
+      setSetData(JSON.parse(saved));
     }
   }, []);
 
-  // Save completed sets
+  // Save to local storage
   useEffect(() => {
-    localStorage.setItem('sachi_booty_builder_progress', JSON.stringify(completedSets));
-  }, [completedSets]);
+    localStorage.setItem('sachi_booty_builder_progress_v2', JSON.stringify(setData));
+  }, [setData]);
 
   // Click outside dropdown
   useEffect(() => {
@@ -33,18 +33,32 @@ const WorkoutProgram = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const toggleSet = (exerciseKey, setIndex) => {
-    const setKey = `${exerciseKey}-${setIndex}`;
-    setCompletedSets(prev => ({
-      ...prev,
-      [setKey]: !prev[setKey]
-    }));
+  const handlePhaseChange = (phase) => {
+    setSelectedPhase(phase);
+    setSelectedDay(phase.days[0]); // Reset to day 1 of the new phase
+    setIsDropdownOpen(false);
   };
 
-  const handleSelectWorkout = (phase, day) => {
-    setSelectedPhase(phase);
-    setSelectedDay(day);
-    setIsDropdownOpen(false);
+  const toggleSet = (exerciseKey, setIndex) => {
+    const setKey = `${exerciseKey}-${setIndex}`;
+    setSetData(prev => {
+      const currentData = prev[setKey] || { completed: false, weight: '' };
+      return {
+        ...prev,
+        [setKey]: { ...currentData, completed: !currentData.completed }
+      };
+    });
+  };
+
+  const updateWeight = (exerciseKey, setIndex, weight) => {
+    const setKey = `${exerciseKey}-${setIndex}`;
+    setSetData(prev => {
+      const currentData = prev[setKey] || { completed: false, weight: '' };
+      return {
+        ...prev,
+        [setKey]: { ...currentData, weight }
+      };
+    });
   };
 
   return (
@@ -56,29 +70,42 @@ const WorkoutProgram = () => {
 
       <div className="program-container">
         
-        {/* Dropdown Menu for Skulpt Vibe */}
+        {/* Phase Selector Tabs */}
+        <div className="phase-tabs-container">
+          {programData.phases.map((phase) => (
+            <button
+              key={phase.id}
+              className={`phase-btn ${selectedPhase.id === phase.id ? 'active' : ''}`}
+              onClick={() => handlePhaseChange(phase)}
+            >
+              {phase.name.split(':')[0]}
+              <span className="phase-weeks">{phase.weeks}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Day Dropdown Selector */}
         <div className="dropdown-container" ref={dropdownRef}>
           <button 
             className="dropdown-toggle"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            {selectedPhase.name.split(':')[0]} - {selectedDay.name.split(':')[0]}
+            {selectedDay.name}
             <ChevronDown style={{ transform: isDropdownOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s' }} />
           </button>
           
           <div className={`dropdown-menu ${isDropdownOpen ? 'open' : ''}`}>
-            {programData.phases.map((phase) => (
-              <React.Fragment key={phase.id}>
-                {phase.days.map((day) => (
-                  <button 
-                    key={`${phase.id}-${day.id}`}
-                    className={`dropdown-item ${(selectedPhase.id === phase.id && selectedDay.id === day.id) ? 'active' : ''}`}
-                    onClick={() => handleSelectWorkout(phase, day)}
-                  >
-                    {phase.name.split(':')[0]}: {day.name}
-                  </button>
-                ))}
-              </React.Fragment>
+            {selectedPhase.days.map((day) => (
+              <button 
+                key={`${selectedPhase.id}-${day.id}`}
+                className={`dropdown-item ${selectedDay.id === day.id ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedDay(day);
+                  setIsDropdownOpen(false);
+                }}
+              >
+                {day.name}
+              </button>
             ))}
           </div>
         </div>
@@ -115,19 +142,32 @@ const WorkoutProgram = () => {
                     </div>
                   )}
                   
-                  {/* Sets Tracker */}
+                  {/* Sets Tracker with Weight Logging */}
                   <div className="set-trackers">
                     {Array.from({ length: exercise.sets }).map((_, setIdx) => {
-                      const isCompleted = completedSets[`${exerciseKey}-${setIdx}`];
+                      const currentSet = setData[`${exerciseKey}-${setIdx}`] || { completed: false, weight: '' };
+                      
                       return (
-                        <button
-                          key={setIdx}
-                          onClick={() => toggleSet(exerciseKey, setIdx)}
-                          className={`set-btn ${isCompleted ? 'completed' : ''}`}
-                        >
-                          {isCompleted && <Check size={14} />}
-                          SET {setIdx + 1}
-                        </button>
+                        <div key={setIdx} className="set-row">
+                          <button
+                            onClick={() => toggleSet(exerciseKey, setIdx)}
+                            className={`set-btn ${currentSet.completed ? 'completed' : ''}`}
+                          >
+                            {currentSet.completed && <Check size={14} />}
+                            SET {setIdx + 1}
+                          </button>
+                          
+                          <div className="weight-input-wrapper">
+                            <input
+                              type="number"
+                              className={`weight-input ${currentSet.completed ? 'completed-input' : ''}`}
+                              placeholder="lbs"
+                              value={currentSet.weight}
+                              onChange={(e) => updateWeight(exerciseKey, setIdx, e.target.value)}
+                              disabled={currentSet.completed}
+                            />
+                          </div>
+                        </div>
                       );
                     })}
                   </div>

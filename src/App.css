@@ -108,6 +108,50 @@
   width: 100%;
 }
 
+.phase-tabs-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.phase-tabs-container::-webkit-scrollbar {
+  height: 4px;
+}
+.phase-tabs-container::-webkit-scrollbar-thumb {
+  background-color: var(--accent-lime);
+  border-radius: 4px;
+}
+
+.phase-btn {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  font-size: 1.25rem;
+  font-family: var(--font-display);
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.2s ease;
+}
+
+.phase-btn.active {
+  background: var(--accent-lime);
+  color: var(--bg-primary);
+  border-color: var(--accent-lime);
+}
+
+.phase-weeks {
+  font-size: 0.8rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
 .dropdown-container {
   position: relative;
   margin-bottom: 2rem;
@@ -269,12 +313,20 @@
 .set-trackers {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1rem;
+}
+
+.set-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 100px;
 }
 
 .set-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
   background: transparent;
@@ -282,12 +334,53 @@
   color: var(--text-secondary);
   font-weight: 600;
   transition: all 0.2s;
+  width: 100%;
 }
 
 .set-btn.completed {
   background: var(--accent-lime);
   border-color: var(--accent-lime);
   color: var(--bg-primary);
+}
+
+.weight-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.weight-input {
+  width: 100%;
+  padding: 0.5rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.weight-input:focus {
+  outline: none;
+  border-color: var(--accent-lime);
+}
+
+.weight-input.completed-input {
+  background: var(--bg-secondary);
+  border-color: var(--bg-secondary);
+  color: var(--accent-lime);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 /* Best Practices */
