@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, Flame } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const scrollToProgram = () => {
@@ -17,13 +18,9 @@ const Hero = () => {
         <h1 className="hero-title">
           Build the <span className="text-gradient">Blueprint</span>
         </h1>
-        <p className="hero-description">
-          A 12-week specialized program designed to maximize glute hypertrophy without over-developing your legs. 
-          Science-backed, perfectly structured, and made just for you.
-        </p>
-        <button className="primary-button" onClick={scrollToProgram}>
-          Start the Program <ArrowRight size={20} />
-        </button>
+        <Link to="/breakdown" className="primary-button">
+          Exercise Breakdown <ArrowRight size={20} />
+        </Link>
       </div>
     </section>
   );

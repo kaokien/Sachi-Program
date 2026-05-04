@@ -1,0 +1,199 @@
+/* Additions for Exercise Breakdown Page */
+.breakdown-page {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.nav-header {
+  margin-bottom: 3rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  transition: color 0.2s;
+}
+
+.back-link:hover {
+  color: var(--accent-lime);
+}
+
+.breakdown-header {
+  margin-bottom: 4rem;
+}
+
+.breakdown-title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.breakdown-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  max-width: 600px;
+}
+
+.anatomy-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  background: var(--bg-secondary);
+  padding: 3rem;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .anatomy-section {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+}
+
+.anatomy-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.anatomy-desc {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.anatomy-list {
+  list-style: none;
+}
+
+.anatomy-list li {
+  margin-bottom: 1.5rem;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.anatomy-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-lime);
+  border-radius: 50%;
+}
+
+.anatomy-list strong {
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+.anatomy-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-radius: var(--border-radius-sm);
+  border: 1px dashed var(--border-color);
+}
+
+.glute-svg {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.5); opacity: 0.5; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.pulse-dot {
+  transform-origin: center;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.cues-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cue-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--accent-lime);
+  padding: 2rem;
+  transition: transform 0.2s;
+}
+
+.cue-card:hover {
+  transform: translateY(-5px);
+}
+
+.cue-header {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cue-title {
+  font-size: 2rem;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.cue-focus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-lime);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: rgba(217, 253, 63, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+.cue-subtitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cue-list {
+  list-style: none;
+}
+
+.cue-list li {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.cue-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent-lime);
+  font-weight: bold;
+}

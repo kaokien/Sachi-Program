@@ -1,22 +1,20 @@
 import React from 'react';
-import Hero from './components/Hero';
-import BestPractices from './components/BestPractices';
-import WorkoutProgram from './components/WorkoutProgram';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import ExerciseBreakdown from './pages/ExerciseBreakdown';
 import './App.css';
+import './breakdown.css';
 
 function App() {
   return (
-    <div className="app-container">
-      <main className="main-content">
-        <Hero />
-        <WorkoutProgram />
-        <BestPractices />
-      </main>
-      
-      <footer className="footer">
-        <p>Built for Sachi. Consistency is key. 🍑</p>
-      </footer>
-    </div>
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/breakdown" element={<ExerciseBreakdown />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
