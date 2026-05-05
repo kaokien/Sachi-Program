@@ -1,4 +1,3 @@
-import React from 'react';
 import { Brain, Dumbbell, Apple } from 'lucide-react';
 
 const BestPractices = () => {

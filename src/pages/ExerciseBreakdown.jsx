@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Target, Info } from 'lucide-react';
 
@@ -163,7 +163,7 @@ const ExerciseBreakdown = () => {
   ];
 
   return (
-    <div className="breakdown-page animate-fade-in">
+    <main className="breakdown-page animate-fade-in">
       <nav className="nav-header">
         <Link to="/" className="back-link">
           <ArrowLeft size={24} /> Back to Program
@@ -187,7 +187,7 @@ const ExerciseBreakdown = () => {
             </ul>
           </div>
           <div className="anatomy-visual">
-            <svg viewBox="0 0 200 200" className="glute-svg">
+            <svg viewBox="0 0 200 200" className="glute-svg" role="img" aria-label="Glute muscle anatomy diagram showing the gluteus maximus, medius, and minimus">
               <defs>
                 <linearGradient id="gluteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#D9FD3F" />
@@ -241,7 +241,7 @@ const ExerciseBreakdown = () => {
           </div>
         ))}
       </div>
-    </div>
+    </main>
   );
 };
 

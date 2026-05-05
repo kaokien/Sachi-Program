@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
-  <rect width="512" height="512" fill="#111111"/>
-  <path d="M256 384 Q350 320 400 256 Q450 150 350 150 Q300 150 256 200 Q212 150 162 150 Q62 150 112 256 Q162 320 256 384 Z" fill="#D9FD3F" />
-  <circle cx="200" cy="200" r="15" fill="#111111" />
-  <circle cx="312" cy="200" r="15" fill="#111111" />
+  <!-- Background -->
+  <rect width="512" height="512" rx="108" fill="#111111"/>
+  <!-- Peach/glute shape -->
+  <path d="M256 420 C150 350 80 280 100 190 C118 120 175 95 225 140 C240 155 256 170 256 170 C256 170 272 155 287 140 C337 95 394 120 412 190 C432 280 362 350 256 420Z" fill="#D9FD3F"/>
+  <!-- Center line -->
+  <line x1="256" y1="170" x2="256" y2="380" stroke="#111111" stroke-width="12" stroke-linecap="round" opacity="0.35"/>
+  <!-- Dumbbell at top -->
+  <rect x="178" y="55" width="156" height="28" rx="14" fill="#D9FD3F" opacity="0.5"/>
+  <rect x="155" y="45" width="32" height="48" rx="10" fill="#D9FD3F" opacity="0.5"/>
+  <rect x="325" y="45" width="32" height="48" rx="10" fill="#D9FD3F" opacity="0.5"/>
 </svg>

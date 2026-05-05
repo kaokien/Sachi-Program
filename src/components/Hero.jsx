@@ -1,11 +1,7 @@
-import React from 'react';
-import { ArrowRight, Flame } from 'lucide-react';
+import { ArrowRight, Flame, BookOpen } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
-  const scrollToProgram = () => {
-    document.getElementById('program').scrollIntoView({ behavior: 'smooth' });
-  };
 
   return (
     <section className="hero">
@@ -18,9 +14,14 @@ const Hero = () => {
         <h1 className="hero-title">
           Build the <span className="text-gradient">Blueprint</span>
         </h1>
-        <Link to="/breakdown" className="primary-button">
-          Exercise Breakdown <ArrowRight size={20} />
-        </Link>
+        <div className="hero-buttons">
+          <Link to="/breakdown" className="primary-button">
+            Exercise Breakdown <ArrowRight size={20} />
+          </Link>
+          <Link to="/guide" className="secondary-button">
+            <BookOpen size={20} /> Read the Guide
+          </Link>
+        </div>
       </div>
     </section>
   );

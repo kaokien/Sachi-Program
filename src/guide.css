@@ -1,0 +1,425 @@
+/* Guide / Ebook Page */
+.guide-page {
+  min-height: 100vh;
+}
+
+/* Cover */
+.guide-cover {
+  position: relative;
+  height: 70vh;
+  min-height: 400px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.guide-cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.guide-cover-overlay {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+  padding-top: 8rem;
+}
+
+.guide-tag {
+  display: inline-block;
+  background: var(--accent-lime);
+  color: var(--bg-primary);
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0.4rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.guide-cover-title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.guide-cover-sub {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+  max-width: 550px;
+  line-height: 1.7;
+}
+
+/* Layout */
+.guide-layout {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  .guide-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+/* Table of Contents */
+.guide-toc {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-top: 2rem;
+}
+
+@media (max-width: 900px) {
+  .guide-toc {
+    position: relative;
+    top: 0;
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 1rem 0;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+  }
+  .guide-toc::-webkit-scrollbar { height: 0; }
+}
+
+.toc-label {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  .toc-label { display: none; }
+}
+
+.toc-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-left: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.toc-link:hover {
+  color: var(--text-primary);
+}
+
+.toc-link.active {
+  color: var(--accent-lime);
+  border-left-color: var(--accent-lime);
+}
+
+@media (max-width: 900px) {
+  .toc-link {
+    border-left: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+  .toc-link.active {
+    border-bottom-color: var(--accent-lime);
+  }
+}
+
+/* Chapter Content */
+.guide-content {
+  padding-top: 2rem;
+  padding-bottom: 6rem;
+}
+
+.guide-chapter {
+  margin-bottom: 6rem;
+  scroll-margin-top: 2rem;
+}
+
+.ch-number {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--accent-lime);
+  opacity: 0.3;
+  line-height: 1;
+  display: block;
+  margin-bottom: -0.5rem;
+}
+
+.ch-title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.ch-lead {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+}
+
+/* Content Cards */
+.ch-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 2rem;
+}
+
+.ch-card.highlight {
+  border-left: 4px solid var(--accent-lime);
+}
+
+.ch-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ch-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.ch-card p:last-child {
+  margin-bottom: 0;
+}
+
+.ch-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ch-list li {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.ch-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-lime);
+  border-radius: 50%;
+}
+
+.ch-list li strong {
+  color: var(--text-primary);
+}
+
+/* Blockquote */
+.ch-quote {
+  border-left: 3px solid var(--accent-lime);
+  padding: 1.5rem 2rem;
+  margin: 2.5rem 0;
+  background: rgba(217, 253, 63, 0.03);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+.ch-quote cite {
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: normal;
+}
+
+/* Timeline Grid */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.timeline-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--accent-lime);
+  padding: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.timeline-card:hover {
+  transform: translateY(-4px);
+}
+
+.timeline-phase {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--accent-lime);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.timeline-weeks {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.timeline-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Week Grid */
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.week-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+}
+
+.week-card h4 {
+  font-size: 1.1rem;
+  color: var(--accent-lime);
+  margin-bottom: 0.5rem;
+}
+
+.week-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Anatomy Duo */
+.anatomy-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 700px) {
+  .anatomy-duo {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Nutrition Grid */
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.nutrient-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.nutrient-card:hover {
+  transform: translateY(-4px);
+}
+
+.nutrient-emoji {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.nutrient-card h4 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.nutrient-target {
+  font-weight: 800;
+  color: var(--accent-lime) !important;
+  font-size: 0.9rem;
+  margin-bottom: 1rem !important;
+}
+
+.nutrient-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* CTA */
+.guide-cta {
+  text-align: center;
+  padding: 4rem 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.secondary-button {
+  background: transparent;
+  color: var(--accent-lime);
+  padding: 1.25rem 3rem;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px solid var(--accent-lime);
+  transition: all 0.2s ease;
+}
+
+.secondary-button:hover {
+  background: var(--accent-lime);
+  color: var(--bg-primary);
+}
